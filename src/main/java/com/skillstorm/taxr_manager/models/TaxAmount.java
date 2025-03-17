@@ -2,11 +2,16 @@ package com.skillstorm.taxr_manager.models;
 
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,9 +30,14 @@ public class TaxAmount {
 	private int taxLiability;
 	@Column
 	private int refundAmount;
-	@Column
-	private Optional<State> state;
-	@Column
+	
+	@OneToOne
+	@JoinColumn(name = "id_state", referencedColumnName = "id")
+	private State state;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_return", referencedColumnName = "id")
+	@JsonIgnoreProperties("taxAmounts")
 	private TaxReturn taxReturn;
 	
 	public TaxAmount() {
@@ -36,7 +46,7 @@ public class TaxAmount {
 	}
 
 	public TaxAmount(int id, int adjustedGrossIncome, int taxableIncome, int taxLiability, int refundAmount,
-			Optional<State> state, TaxReturn taxReturn) {
+			State state, TaxReturn taxReturn) {
 		super();
 		this.id = id;
 		this.adjustedGrossIncome = adjustedGrossIncome;
@@ -87,11 +97,11 @@ public class TaxAmount {
 		this.refundAmount = refundAmount;
 	}
 
-	public Optional<State> getState() {
+	public State getState() {
 		return state;
 	}
 
-	public void setState(Optional<State> state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 

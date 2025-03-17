@@ -41,7 +41,7 @@ public class TaxAmountService {
 		}
 	}
 	
-	public ResponseEntity<TaxAmount> updateClient(int id, TaxAmountDTO dto) {
+	public ResponseEntity<TaxAmount> updateTaxAmount(int id, TaxAmountDTO dto) {
 		try {
 			if (repo.existsById(id)) 
 				return ResponseEntity.ok(repo.save(new TaxAmount(0, dto.adjustedGrossIncome(), dto.taxableIncome(), 
@@ -52,7 +52,7 @@ public class TaxAmountService {
 		}
 	}
 	
-	public ResponseEntity<Void> deleteClient(int id) {
+	public ResponseEntity<Void> deleteTaxAmount(int id) {
 		try {
 			repo.deleteById(id); // this will not throw an exception if the record with this id is not in the DB
 			return ResponseEntity.noContent().build(); // can't use the .body() method because RE is Void

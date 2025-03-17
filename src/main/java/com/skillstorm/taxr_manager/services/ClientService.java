@@ -28,10 +28,10 @@ public class ClientService {
 	}
 	
 	public ResponseEntity<Optional<Client>> getById(int id) {
-		Optional<Client> cpa = repo.findById(id);
+		Optional<Client> client = repo.findById(id);
 		
-		if (!cpa.isEmpty())
-			return ResponseEntity.ok(cpa);
+		if (!client.isEmpty())
+			return ResponseEntity.ok(client);
 		return ResponseEntity.notFound().build();
 	}
 	
