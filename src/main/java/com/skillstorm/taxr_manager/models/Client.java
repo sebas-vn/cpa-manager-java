@@ -4,7 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 
 @Entity
@@ -31,6 +37,10 @@ public class Client {
 	private String ssn;
 	@Column
 	private String ein;
+	
+	@OneToMany(mappedBy = "client")
+	@JsonIgnoreProperties("client")
+	private List<TaxReturn> taxReturn;
 
 	public Client() {
 		

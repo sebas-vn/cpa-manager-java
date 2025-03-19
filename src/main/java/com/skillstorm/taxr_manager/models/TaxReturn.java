@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -38,7 +39,7 @@ public class TaxReturn {
 	inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private List<Category> categories;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "client_id", referencedColumnName = "id")
 	private Client client;
 	@OneToOne
@@ -64,8 +65,7 @@ public class TaxReturn {
 	}
 
 	public TaxReturn(int id, Client client, Cpa cpa, FilingType filingType, int taxYear, String submissionDate, 
-			String createdAt, ReturnStatus status, ReturnComplexity complexity, 
-			List<TaxAmount> taxAmounts, List<Category> categories) {
+			String createdAt, ReturnStatus status, ReturnComplexity complexity, List<Category> categories) {
 		
 		super();
 		this.id = id;
@@ -77,7 +77,6 @@ public class TaxReturn {
 		this.createdAt = createdAt;
 		this.status = status;
 		this.complexity = complexity;
-		this.taxAmounts = taxAmounts;
 		this.categories = categories;
 		
 	}

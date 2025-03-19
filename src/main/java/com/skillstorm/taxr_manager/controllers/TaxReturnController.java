@@ -1,5 +1,7 @@
 package com.skillstorm.taxr_manager.controllers;
 
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,13 +34,19 @@ public class TaxReturnController {
 		return service.getAll();
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<Optional<TaxReturn>> getById(@PathVariable int id) {
+		return service.getById(id);
+	}
+	
 	@PostMapping()
-	public ResponseEntity<TaxReturn> addCpa(@RequestBody TaxReturnDTO dto) {
-		return service.addTaxReturn(dto);
+	public ResponseEntity<TaxReturn> insertCompleteTaxReturn(@RequestBody TaxReturnDTO dto) {
+		return service.insertCompleteTaxReturn(dto);
 	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<TaxReturn> updateCpa(@PathVariable int id, @RequestBody TaxReturnDTO dto) {	
+		System.out.println("TAX CONTROLLER " + dto.toString());
 		return service.updateTaxReturn(id, dto);
 	}
 	

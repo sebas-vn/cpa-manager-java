@@ -38,7 +38,7 @@ public class ClientService {
 	public ResponseEntity<Client> addClient(ClientDTO dto) {
 		try {
 			Client newClient = repo.save(new Client(0, dto.firstName(), dto.middleName(), dto.lastName(), dto.email(),
-					dto.phoneNumber(), dto.ssn(), dto.ein()));
+					dto.mobileNumber(), dto.homeNumber(), dto.ssn(), dto.ein()));
 			return ResponseEntity.status(HttpStatus.CREATED).body(newClient);
 		} catch (Exception e){
 			System.err.println(e);
@@ -50,7 +50,7 @@ public class ClientService {
 		try {
 			if (repo.existsById(id)) 
 				return ResponseEntity.ok(repo.save(new Client(0, dto.firstName(), dto.middleName(), dto.lastName(), dto.email(),
-						dto.phoneNumber(), dto.ssn(), dto.ein())));
+						dto.mobileNumber(), dto.homeNumber(), dto.ssn(), dto.ein())));
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 		} catch (Exception e) {
 			return ResponseEntity.internalServerError().build();
