@@ -24,7 +24,9 @@ public class Client {
 	@Column
 	private String email;
 	@Column
-	private String phoneNumber;
+	private String mobileNumber;
+	@Column
+	private String homeNumber;
 	@Column
 	private String ssn;
 	@Column
@@ -34,15 +36,16 @@ public class Client {
 		
 	}
 
-	public Client(int id, String firstName, String middleName, String lastName, String email, String phoneNumber,
-			String ssn, String ein) {
+	public Client(int id, String firstName, String middleName, String lastName, String email, String mobileNumber,
+			String homeNumber, String ssn, String ein) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
 		this.email = email;
-		this.phoneNumber = phoneNumber;
+		this.mobileNumber = mobileNumber;
+		this.homeNumber = homeNumber;
 		this.ssn = ssn;
 		this.ein = ein;
 	}
@@ -87,12 +90,12 @@ public class Client {
 		this.email = email;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getMobileNumber() {
+		return mobileNumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 
 	public String getSsn() {
@@ -111,12 +114,19 @@ public class Client {
 		this.ein = ein;
 	}
 
+	public String getHomeNumber() {
+		return homeNumber;
+	}
+
+	public void setHomeNumber(String homeNumber) {
+		this.homeNumber = homeNumber;
+	}
+
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
-				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", ssn=" + ssn + ", ein=" + ein + "]";
+				+ ", email=" + email + ", mobileNumber=" + mobileNumber + ", homeNumber=" + homeNumber + ", ssn=" + ssn
+				+ ", ein=" + ein + "]";
 	}
-
-	
 
 }

@@ -1,7 +1,5 @@
 package com.skillstorm.taxr_manager.models;
 
-import java.util.Optional;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -32,7 +30,7 @@ public class TaxAmount {
 	private int refundAmount;
 	
 	@OneToOne
-	@JoinColumn(name = "id_state", referencedColumnName = "id")
+	@JoinColumn(name = "id_state", referencedColumnName = "stateCode")
 	private State state;
 	
 	@ManyToOne

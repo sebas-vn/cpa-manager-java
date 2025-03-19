@@ -6,11 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.skillstorm.taxr_manager.dtos.ClientDTO;
 import com.skillstorm.taxr_manager.dtos.TaxReturnDTO;
-import com.skillstorm.taxr_manager.models.Client;
 import com.skillstorm.taxr_manager.models.TaxReturn;
-import com.skillstorm.taxr_manager.repositories.ClientRepository;
 import com.skillstorm.taxr_manager.repositories.TaxReturnRepository;
 
 @Service
@@ -40,8 +37,9 @@ public class TaxReturnService {
 	
 	public ResponseEntity<TaxReturn> addTaxReturn(TaxReturnDTO dto) {
 		try {
-			TaxReturn newTaxReturn = repo.save(new TaxReturn(0, dto.taxYear(), dto.client(), 
-					dto.filingMethod(), dto.submissionDate(), dto.status(), dto.taxAmounts()));
+			TaxReturn newTaxReturn = repo.save(new TaxReturn(0, dto.client(), dto.cpa(), dto.filingType(), dto.taxYear(), 
+					dto.submissionDate(), null, dto.status(), dto.complexity(), dto.taxAmounts(), dto.categories()));
+			
 			return ResponseEntity.status(HttpStatus.CREATED).body(newTaxReturn);
 		} catch (Exception e){
 			System.err.println(e);
@@ -51,9 +49,12 @@ public class TaxReturnService {
 	
 	public ResponseEntity<TaxReturn> updateTaxReturn(int id, TaxReturnDTO dto) {
 		try {
-			if (repo.existsById(id))
-				return ResponseEntity.ok(repo.save(new TaxReturn(id, dto.taxYear(), dto.client(), 
-						dto.filingMethod(), dto.submissionDate(), dto.status(), dto.taxAmounts())));
+			if (repo.existsById(id)) {
+				TaxReturn updatedTaxReturn = repo.save(new TaxReturn(0, dto.client(), dto.cpa(), dto.filingType(), dto.taxYear(), 
+						dto.submissionDate(), null, dto.status(), dto.complexity(), dto.taxAmounts(), dto.categories()));
+				
+				return ResponseEntity.ok(updatedTaxReturn); 
+			}
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 		} catch (Exception e) {
 			return ResponseEntity.internalServerError().build();

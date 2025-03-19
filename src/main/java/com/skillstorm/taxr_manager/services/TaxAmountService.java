@@ -6,11 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.skillstorm.taxr_manager.dtos.ClientDTO;
 import com.skillstorm.taxr_manager.dtos.TaxAmountDTO;
-import com.skillstorm.taxr_manager.models.Client;
 import com.skillstorm.taxr_manager.models.TaxAmount;
-import com.skillstorm.taxr_manager.repositories.ClientRepository;
 import com.skillstorm.taxr_manager.repositories.TaxAmountRepository;
 
 @Service

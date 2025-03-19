@@ -8,34 +8,34 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "state")
-public class State {
+@Table(name = "tax_complexity")
+public class ReturnComplexity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private int id;
 	
 	@Column
 	private String name;
 	@Column
-	private String stateCode;
+	private String description;
 
-	public State() {
+	public ReturnComplexity() {
 		
 	}
 
-	public State(String id, String name, String stateCode) {
+	public ReturnComplexity(int id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.stateCode = stateCode;
+		this.description = description;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -47,17 +47,17 @@ public class State {
 		this.name = name;
 	}
 
-	public String getStateCode() {
-		return stateCode;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setStateCode(String stateCode) {
-		this.stateCode = stateCode;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
 	public String toString() {
-		return "State [id=" + id + ", name=" + name + ", stateCode=" + stateCode + "]";
+		return "FilingType [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 
 }
