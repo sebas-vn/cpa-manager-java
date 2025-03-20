@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.taxr_manager.dtos.ClientDTO;
 import com.skillstorm.taxr_manager.dtos.CpaDTO;
+import com.skillstorm.taxr_manager.models.Client;
 import com.skillstorm.taxr_manager.models.Cpa;
+import com.skillstorm.taxr_manager.services.ClientService;
 import com.skillstorm.taxr_manager.services.CpaService;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,31 +22,31 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/client")
 public class ClientController {
 
-	private CpaService service;
+	private ClientService service;
 	
 	
-	public ClientController(CpaService service) {
+	public ClientController(ClientService service) {
 		this.service = service;
 	}
 	
 	@GetMapping
-	public ResponseEntity<Iterable<Cpa>> getAll() {
+	public ResponseEntity<Iterable<Client>> getAll() {
 		return service.getAll();
 	}
 	
 	@PostMapping()
-	public ResponseEntity<Cpa> addCpa(@RequestBody CpaDTO dto) {
-		return service.addCpa(dto);
+	public ResponseEntity<Client> addCpa(@RequestBody ClientDTO dto) {
+		return service.addClient(dto);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Cpa> updateCpa(@PathVariable int id, @RequestBody CpaDTO dto) {	
-		return service.updateCpa(id, dto);
+	public ResponseEntity<Client> updateCpa(@PathVariable int id, @RequestBody ClientDTO dto) {	
+		return service.updateClient(id, dto);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteCpa(@PathVariable int id) {
-		return service.deleteCpa(id);
+		return service.deleteClient(id);
 	}
 
 }

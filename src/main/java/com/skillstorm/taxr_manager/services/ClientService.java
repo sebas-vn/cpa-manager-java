@@ -49,7 +49,7 @@ public class ClientService {
 	public ResponseEntity<Client> updateClient(int id, ClientDTO dto) {
 		try {
 			if (repo.existsById(id)) 
-				return ResponseEntity.ok(repo.save(new Client(0, dto.firstName(), dto.middleName(), dto.lastName(), dto.email(),
+				return ResponseEntity.ok(repo.save(new Client(id, dto.firstName(), dto.middleName(), dto.lastName(), dto.email(),
 						dto.mobileNumber(), dto.homeNumber(), dto.ssn(), dto.ein())));
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 		} catch (Exception e) {
