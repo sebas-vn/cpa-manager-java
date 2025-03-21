@@ -137,8 +137,12 @@ public class TaxReturnService {
 	
 	public ResponseEntity<Void> deleteTaxReturn(int id) {
 		try {
-			repo.deleteById(id); // this will not throw an exception if the record with this id is not in the DB
-			return ResponseEntity.noContent().build(); // can't use the .body() method because RE is Void
+			if (repo.existsById(id)) {
+				repo.deleteById(id);
+				return ResponseEntity.noContent().build(); // this will not throw an exception if the record with this id is not in the DB
+			}
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build(); 
+			// can't use the .body() method because RE is Void
  		} catch (Exception e) {
 			return ResponseEntity.internalServerError().build();
 		}

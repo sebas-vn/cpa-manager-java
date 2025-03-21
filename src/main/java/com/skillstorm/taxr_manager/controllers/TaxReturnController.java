@@ -45,13 +45,13 @@ public class TaxReturnController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<TaxReturn> updateCpa(@PathVariable int id, @RequestBody TaxReturnDTO dto) {	
+	public ResponseEntity<TaxReturn> updateTaxReturn(@PathVariable int id, @RequestBody TaxReturnDTO dto) {	
 		System.out.println("TAX CONTROLLER " + dto.toString());
 		return service.updateTaxReturn(id, dto);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteCpa(@PathVariable int id) {
+	public ResponseEntity<Void> deleteTaxReturn(@PathVariable int id) {
 		return service.deleteTaxReturn(id);
 	}
 

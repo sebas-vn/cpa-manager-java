@@ -14,8 +14,12 @@ import jakarta.persistence.Table;
 
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
 @Entity
@@ -37,6 +41,7 @@ public class TaxReturn {
 	@JoinTable(name = "return_category", 
 	joinColumns = @JoinColumn(name = "tax_return_id"),
 	inverseJoinColumns = @JoinColumn(name = "category_id"))
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Category> categories;
 	
 	@ManyToOne
@@ -56,7 +61,7 @@ public class TaxReturn {
 	private ReturnComplexity complexity;
 	
 	
-	@OneToMany(mappedBy = "taxReturn")
+	@OneToMany(mappedBy = "taxReturn", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JsonIgnoreProperties("taxReturn")
 	private List<TaxAmount> taxAmounts;
 
