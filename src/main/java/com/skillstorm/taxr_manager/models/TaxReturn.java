@@ -28,7 +28,7 @@ public class TaxReturn {
 	
 	@Column
 	private int taxYear;
-	@Column
+	@Column(nullable = true)
 	private String submissionDate;
 	@Column
 	private String createdAt;

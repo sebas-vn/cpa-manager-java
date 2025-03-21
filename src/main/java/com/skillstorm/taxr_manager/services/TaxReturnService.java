@@ -43,19 +43,19 @@ public class TaxReturnService {
 		return ResponseEntity.notFound().build();
 	}
 	
-	// TBD
-	public ResponseEntity<TaxReturn> addTaxReturn(TaxReturnDTO dto) {
-		try {
-			TaxReturn newTaxReturn = repo.save(new TaxReturn(0, dto.client(), dto.cpa(), dto.filingType(), dto.taxYear(), 
-					dto.submissionDate(), null, dto.status(), dto.complexity(), dto.categories()));
-			
-			return ResponseEntity.status(HttpStatus.CREATED).body(newTaxReturn);
-		} catch (Exception e){
-			System.err.println(e);
-			return ResponseEntity.internalServerError().build();
-		}
-	}
-	
+//	// TBD
+//	public ResponseEntity<TaxReturn> addTaxReturn(TaxReturnDTO dto) {
+//		try {
+//			TaxReturn newTaxReturn = repo.save(new TaxReturn(0, dto.client(), dto.cpa(), dto.filingType(), dto.taxYear(), 
+//					dto.submissionDate(), null, dto.status(), dto.complexity(), dto.categories()));
+//			
+//			return ResponseEntity.status(HttpStatus.CREATED).body(newTaxReturn);
+//		} catch (Exception e){
+//			System.err.println(e);
+//			return ResponseEntity.internalServerError().build();
+//		}
+//	}
+//	
 	
 	// insertCompleteTaxReturn inserts the record of a TaxReturn 
 	// also inserts records of an joint tables it might be related to
@@ -68,8 +68,14 @@ public class TaxReturnService {
 			// Reurns TaxReturn with its proper ID
 			TaxReturn savedTaxReturn = repo.save(newTaxReturn);
 			
+			System.out.println(savedTaxReturn.toString());
+			
 			if (dto.taxAmounts().size() > 0) {
-				dto.taxAmounts().forEach(amount -> amount.setId(0));
+				System.out.println("bigger than 0");
+				dto.taxAmounts().forEach(amount -> {
+					amount.setId(0);
+					amount.setTaxReturn(savedTaxReturn);
+				});
 				
 				// convert new DTO records to instances of the Class TaxAmount
 				Iterable<TaxAmount> taxAmounts = taxAmountRepo.saveAll(dto.taxAmounts());
@@ -101,9 +107,7 @@ public class TaxReturnService {
 
 				TaxReturn newTaxReturn = new TaxReturn(id, dto.client(), dto.cpa(), dto.filingType(),
 						dto.taxYear(), dto.submissionDate(), null, dto.status(), dto.complexity(), dto.categories());
-				
-				System.out.println(newTaxReturn.toString());
-				
+								
 				// Reurns TaxReturn with its proper ID
 				TaxReturn savedTaxReturn = repo.save(newTaxReturn);
 				
