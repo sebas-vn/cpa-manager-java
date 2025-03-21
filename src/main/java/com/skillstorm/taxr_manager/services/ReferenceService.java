@@ -1,23 +1,15 @@
 package com.skillstorm.taxr_manager.services;
 
-import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.JsonMappingException.Reference;
-import com.skillstorm.taxr_manager.dtos.CategoryDTO;
-import com.skillstorm.taxr_manager.dtos.CpaDTO;
-import com.skillstorm.taxr_manager.models.Category;
-import com.skillstorm.taxr_manager.models.Cpa;
+
 import com.skillstorm.taxr_manager.models.FilingType;
 import com.skillstorm.taxr_manager.models.ReturnComplexity;
 import com.skillstorm.taxr_manager.models.ReturnReference;
 import com.skillstorm.taxr_manager.models.ReturnStatus;
 import com.skillstorm.taxr_manager.models.State;
-import com.skillstorm.taxr_manager.repositories.CategoryRepository;
-import com.skillstorm.taxr_manager.repositories.CpaRepository;
 import com.skillstorm.taxr_manager.repositories.FilingTypeRepository;
 import com.skillstorm.taxr_manager.repositories.ReturnComplexityRepository;
 import com.skillstorm.taxr_manager.repositories.ReturnStatusRepository;

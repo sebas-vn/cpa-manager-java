@@ -9,11 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.taxr_manager.dtos.CategoryDTO;
-import com.skillstorm.taxr_manager.dtos.CpaDTO;
 import com.skillstorm.taxr_manager.models.Category;
-import com.skillstorm.taxr_manager.models.Cpa;
 import com.skillstorm.taxr_manager.services.CategoryService;
-import com.skillstorm.taxr_manager.services.CpaService;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 

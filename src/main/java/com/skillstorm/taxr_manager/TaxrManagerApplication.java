@@ -24,6 +24,8 @@ public class TaxrManagerApplication {
 		
 		// starting off the process
 		http.httpBasic(Customizer.withDefaults());
+		
+		http.csrf().disable();
 				
 		// bypassing CORS
 		http.cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(request -> {
@@ -32,6 +34,15 @@ public class TaxrManagerApplication {
 	           return cc;
 			})
 	    );
+		
+		http.authorizeHttpRequests(requests -> {
+			
+			// saying whether or not requests of certain methods/endpoints are allowed or denied
+			// once a request matches one of these, top-down, the rest are ignored!
+			requests.requestMatchers(HttpMethod.GET, "/**").permitAll();
+			requests.anyRequest().permitAll();
+			
+		});
 		
 		return http.build();
 		
